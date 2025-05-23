@@ -11,19 +11,24 @@
             font-family: Arial, sans-serif;
             overflow-x: hidden;
             position: relative;
+            margin: 0;
+            padding: 0;
         }
         .container {
             margin-top: 50px;
+            padding: 10px;
         }
         button {
             background-color: #ff4081;
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 12px 24px;
+            font-size: 16px;
             margin: 10px;
             cursor: pointer;
             border-radius: 10px;
+            width: 90%;
+            max-width: 300px;
         }
         button:hover {
             background-color: #f50057;
@@ -31,7 +36,7 @@
         .hidden {
             display: none;
             margin-top: 20px;
-            font-size: 20px;
+            font-size: 18px;
             color: #880e4f;
         }
         canvas {
@@ -56,36 +61,47 @@
             opacity: 0;
             animation: sparkle 1.5s infinite;
         }
+        
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 36px;
+            }
+            button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <audio id="bg-music" loop autoplay>
-        <source src="Unwritten pages.mp3" type="audio/mpeg">
+        <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-
+    
     <canvas id="confettiCanvas"></canvas>
-
+    
     <div class="container">
-        <h1 style="font-size: 48px; text-align: center; margin-top: 20vh;">🎂 Happy Birthday, Manika! 🎂</h1>
+        <h1 style="font-size: 48px; text-align: center; margin-top: 15vh;">🎂 Happy Birthday, Manika! 🎂</h1>
         <p>Click on the surprises below to reveal them! 🎁</p>
-
+        
         <button onclick="toggleMessage('message1')">🎁 Open Your Gift</button>
         <p id="message1" class="hidden">You're an amazing person, and I hope this year brings you endless joy! 💖</p>
-
+        
         <button onclick="openMiniPlayer('https://open.spotify.com/playlist/0p1pubyAVKeZDSAms7hokR')">🎶 Play Hindi Playlist</button>
-
+        
         <button onclick="openMiniPlayer('https://open.spotify.com/playlist/57k8j6wMoPpSX36s1uj94O')">🎶 Play English Playlist</button>
-
+        
         <button onclick="generateCompliment()">💖 Get Compliments</button>
         <p id="compliment" class="hidden"></p>
-
+        
         <button onclick="toggleMessage('message4')">🔑 Unlock the Secret</button>
         <p id="message4" class="hidden">Cher Manika, je vous aime beaucoup et je prie Dieu que vous ne connaissez pas le français. 😉</p>
-
+        
         <button id="music-toggle" onclick="toggleMusic()" style="position: absolute; top: 10px; right: 10px;">🎵</button>
     </div>
-
+    
     <script>
         function openMiniPlayer(url) {
             window.open(url, '_blank', 'width=400,height=500,top=100,left=100');
@@ -98,17 +114,17 @@
 
         function generateCompliment() {
             const compliments = [
-                "You're my ray of 'sunshine' on the most gloomiest of  days ☀️",
-                "The world is a much much much muuuuchhh better place with you in it! (Mostly because you haven’t taken over it yet. 😈)",
+                "You're my ray of 'sunshine' on the most gloomiest of the days ☀️",
+                "The world is a much much much muuuuucchhhhhh better place with you in it! (Mostly because you haven’t taken over it yet. 😈)",
                 "You are like a warm hug for my soul 🤗",
                 "You make every single thing better—except my ability to focus, because you’re soooo damn distracting. 😉",
-                "Your smile is so contagious, I am afraid it might cause a plague 😊"
+                "Your voice is soooo soothing I am afraid it might cause a sleep plague 😊"
             ];
             const randomIndex = Math.floor(Math.random() * compliments.length);
             document.getElementById("compliment").innerText = compliments[randomIndex];
             document.getElementById("compliment").style.display = "block";
         }
-
+        
         function toggleMusic() {
             var music = document.getElementById("bg-music");
             if (music.paused) {
